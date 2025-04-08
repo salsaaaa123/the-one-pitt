@@ -1,8 +1,15 @@
-javac -extdirs lib/ core/*.java
-javac -extdirs lib/ movement/*.java
-javac -extdirs lib/ report/*.java
-javac -extdirs lib/ routing/*.java
-javac -extdirs lib/ gui/*.java
-javac -extdirs lib/ input/*.java
-javac -extdirs lib/ applications/*.java
-javac -extdirs lib/ interfaces/*.java
+@echo off
+setlocal enabledelayedexpansion
+
+:: Menentukan direktori output
+set targetdir=bin
+
+:: Membuat folder bin jika belum ada
+IF NOT EXIST "%targetdir%" mkdir "%targetdir%"
+
+:: Compile semua file Java dengan classpath ke lib/*
+javac -sourcepath . -d "%targetdir%" -cp "lib/*" core/*.java movement/*.java report/*.java routing/*.java gui/*.java input/*.java applications/*.java interfaces/*.java
+
+:: Selesai
+echo Compilation completed!
+pause
